@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="918.0" prefWidth="1214.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxml.changementvehiculeController">
+   <children>
+      <Label layoutX="503.0" layoutY="68.0" prefHeight="52.0" prefWidth="376.0" text="Changement de véhicules" textFill="#ff9300">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Button layoutX="1071.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="143.0" style="-fx-background-color: orange;" text="Déconnexion" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <BorderPane layoutX="44.0" prefHeight="918.0" prefWidth="200.0" style="-fx-background-color: orange;" />
+      <Label layoutX="463.0" layoutY="286.0" text="Model :" textFill="#ff8700">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="chpmodel" layoutX="591.0" layoutY="291.0" onAction="#ectchpmodel" prefHeight="25.0" prefWidth="200.0" />
+      <Text fill="#ff7d00" layoutX="445.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marque :" wrappingWidth="97.1484375">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <TextField fx:id="chpmarque" layoutX="591.0" layoutY="481.0" onAction="#etcchpmarque" prefHeight="25.0" prefWidth="200.0" />
+      <Text fill="#ff7d00" layoutX="372.0" layoutY="503.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Immatriculation : ">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextField fx:id="immatriculation" layoutX="591.0" layoutY="376.0" onAction="#chpimmatriculation" prefHeight="25.0" prefWidth="200.0" />
+      <Button fx:id="GObtn" layoutX="591.0" layoutY="595.0" mnemonicParsing="false" onAction="#envoieformvehic" prefHeight="52.0" prefWidth="219.0" text="GO !" textFill="#ffaa00" />
+   </children>
+</AnchorPane>

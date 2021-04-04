@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="1092.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxml.remboursementController">
+   <children>
+      <TableView fx:id="tabsupp" layoutX="78.0" layoutY="155.0" prefHeight="276.0" prefWidth="932.0" style="-fx-background-color: #FFA500;">
+        <columns>
+          <TableColumn prefWidth="236.0" text="Frais forfaitaires" />
+          <TableColumn prefWidth="175.0" text="Quantité" />
+            <TableColumn prefWidth="291.99993896484375" text="Montant Unitaire" />
+            <TableColumn prefWidth="228.0" text="Total" />
+        </columns>
+      </TableView>
+      <BorderPane layoutX="-6.0" prefHeight="40.0" prefWidth="1100.0" style="-fx-background-color: #FFA500;">
+         <center>
+            <Label text="Remboursement des frais " BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Ebrima Bold" size="26.0" />
+               </font>
+            </Label>
+         </center>
+      </BorderPane>
+      <Line endX="965.0" endY="-8.0" layoutX="127.0" layoutY="60.0" startX="-683.0" startY="-8.0" style="-fx-effect: #FFA500;" />
+      <Line endX="1025.0" endY="-5.0" layoutX="69.0" layoutY="45.0" startX="-100.70709228515625" startY="-6.0" />
+      <Label layoutX="14.0" layoutY="73.0" text="Visiteur">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="105.0" text="Mois">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="458.0" layoutY="431.0" text="Frais Supplémentaire">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TableView layoutX="80.0" layoutY="464.0" prefHeight="276.0" prefWidth="932.0" style="-fx-background-color: #FFA500;">
+         <columns>
+            <TableColumn prefWidth="236.0" text="Date" />
+            <TableColumn prefWidth="449.99993896484375" text="Libellé" />
+            <TableColumn prefWidth="246.0" text="Montant" />
+         </columns>
+      </TableView>
+      <Label fx:id="visiteurbdd" layoutX="299.0" layoutY="73.0" text="Code visiteur">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="date" layoutX="299.0" layoutY="119.0" prefHeight="27.0" prefWidth="41.0" text="date">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="prenomnom" layoutX="530.0" layoutY="73.0" text="nom prenom">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

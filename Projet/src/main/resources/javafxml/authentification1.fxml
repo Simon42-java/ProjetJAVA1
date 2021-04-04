@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="1103.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxml.authentificationController">
+   <children>
+      <Pane layoutX="22.0" prefHeight="751.0" prefWidth="242.0" style="-fx-background-color: orange;" />
+      <Label layoutX="476.0" layoutY="41.0" prefHeight="88.0" prefWidth="363.0" text="Authentification" textFill="#ff9900" textOverrun="CLIP">
+         <font>
+            <Font name="Microsoft YaHei Bold" size="42.0" />
+         </font>
+      </Label>
+      <Label layoutX="457.0" layoutY="255.0" prefHeight="50.0" prefWidth="141.0" text="Login :" textFill="#ff9c00">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="353.0" layoutY="324.0" prefHeight="76.0" prefWidth="194.0" text="Mot de passe :" textFill="#ff9b00">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <TextField fx:id="loginfield" layoutX="559.0" layoutY="268.0" onAction="#takeloginfield" prefHeight="25.0" prefWidth="177.0" style="-fx-background-color: *;" />
+      <PasswordField fx:id="pwdfield" layoutX="559.0" layoutY="350.0" onAction="#takepwdfield" prefHeight="25.0" prefWidth="177.0" />
+      <Button fx:id="btauthentification" layoutX="570.0" layoutY="649.0" mnemonicParsing="false" onAction="#confirmform" prefHeight="63.0" prefWidth="177.0" style="-fx-background-color: orange;" text="S'authentifier" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <CheckBox fx:id="choixmed" layoutX="392.0" layoutY="436.0" mnemonicParsing="false" onAction="#takechoixmed" prefHeight="63.0" prefWidth="159.0" text="Visiteur médical" textFill="#ff8800">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </CheckBox>
+      <CheckBox layoutX="820.0" layoutY="449.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="159.0" text="Comptabilité" textFill="#ff9600">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </CheckBox>
+   </children>
+</AnchorPane>
