@@ -7,8 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class BDDJAVA {
 
+public class BDDJAVA {
+    
     static String url = "jdbc:mysql://127.0.0.1:3306/ap2_gsb ?useUnicode=true"
             + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&" + "serverTimezone=UTC";
     static String utilisateur = "root";
@@ -22,11 +23,6 @@ public class BDDJAVA {
     public static void selectBDD() {
 
         try {
-            System.out.println("sairir votre nom");
-            Scanner sc = new Scanner(System.in);
-            login = sc.nextLine();
-            System.out.println("sairir votre mdp");
-            motdepasse = sc.nextLine();
             connexion = DriverManager.getConnection(url, utilisateur, motDePasse);
             String sql = "SELECT ag_nom_utilisateur, ag_password FROM agents where ag_nom_utilisateur LIKE'" + login
                     + "'and ag_password like'" + motdepasse + "';";
