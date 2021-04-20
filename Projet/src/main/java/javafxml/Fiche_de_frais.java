@@ -2,7 +2,6 @@ package javafxml;
 
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
-import java.util.Date;
 
 public class Fiche_de_frais {
 
@@ -17,6 +16,7 @@ public class Fiche_de_frais {
         entrerfrais();
         modifierfrais();
         fraissupp();
+        supprimerfrais();
     }
 
     public static void entrerfrais() {
@@ -111,25 +111,47 @@ public class Fiche_de_frais {
             System.out.println("Veuillez rentrer vos frais");
             double nouveaufraie = sc.nextDouble();
             sc.nextLine();
-            System.out.println("Saisir une date JJ/MM/AAAA");
-            String str = sc.nextLine();
+            String str = "null";
+            boolean valide = true;
 
-            if (str.matches("dd/MM/yyyy")) {
+            while (valide) {
+                valide = false;
+                System.out.println("Saisir une date JJ.MM.AAAA");
+                str = sc.nextLine();
 
-                System.out.println("bonne date");
+                if (str.matches("[0-31]{2}[.][010203040506070809101112]{2}[.][2021-2021]{4}")) {
 
-            } else {
-                System.out.println("erreur entrer une date valide");
+                    System.out.println("bonne date");
+
+                }
+
+                /*
+                 * if (str == "dd/MM/2019") { System.out.
+                 * println(" La date d'engagement doit se situer dans l’année écoulée"); }
+                 */ else {
+                    System.out.println("erreur entrer une date valide");
+                    valide = true;
+
+                }
             }
-
             System.out.println("Veuillez justifier vos frais");
             String justifier = sc.nextLine();
             System.out.println("Voici vos nouveau frais : " + nouveaufraie);
             System.out.println("Voici la date des frais : " + str);
             System.out.println("Voici votre justification : " + justifier);
-            // } catch (NumberFormatException a) {
-            // System.out.println("Veillez remplir les champs si dessus");
-        }
 
+        }
+    }
+
+    public static void supprimerfrais() {
+        System.out.println("Voulez vous supprimer un frai de hros forfait");
+        boolean supp = sc.nextBoolean();
+        sc.nextLine();
+
+        if (supp == true) {
+            // Code pour supprimer une donnée dans la BDD
+            System.out.println("Le frai est correctement supprimé");
+
+        }
     }
 }
