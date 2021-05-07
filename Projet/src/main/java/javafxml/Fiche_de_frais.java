@@ -17,7 +17,7 @@ public class Fiche_de_frais {
     static double nbrepas;
     static double nbhorsf;
     static Scanner sc = new Scanner(System.in);
-    static String url = "jdbc:mysql://127.0.0.1:3308/ap2_gsb?useUnicode=true"
+    static String url = "jdbc:mysql://127.0.0.1:3306/ap2_gsb?useUnicode=true"
     + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&" + "serverTimezone=UTC";
     static String utilisateur = "root";
     static String motDePasse = "Simon59300sql";
