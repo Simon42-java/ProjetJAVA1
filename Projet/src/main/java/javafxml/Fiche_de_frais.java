@@ -1,15 +1,33 @@
 package javafxml;
 
-import java.text.SimpleDateFormat;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
 
 public class Fiche_de_frais {
 
-    static String nbkilometre;
-    static String nbnuite;
-    static String nbrepas;
-    static String nbhorsf;
+    static int montant;
+    static String datefrai;
+    static double nbkilometre;
+    static double nbnuite;
+    static double nbrepas;
+    static double nbhorsf;
     static Scanner sc = new Scanner(System.in);
+    static String url = "jdbc:mysql://127.0.0.1:3308/ap2_gsb?useUnicode=true"
+    + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&" + "serverTimezone=UTC";
+    static String utilisateur = "root";
+    static String motDePasse = "Simon59300sql";
+    static Connection connexion = null;
+    static String login;
+    static String motdepasse;
+    static String nom;
+    static ResultSet rs = null;
+    static double rsrepas = 0;
+    static double nbkilometreprix;
 
     public static void main(String[] args) {
 
@@ -21,23 +39,83 @@ public class Fiche_de_frais {
 
     public static void entrerfrais() {
 
-        System.out.println("Veuillez rentrer vos fraies de kilomètrique");
-        nbkilometre = sc.nextLine();
+        System.out.println("Veuillez rentrer votre prenom");
+        String prenom = sc.nextLine();
 
+        System.out.println("Veuillez rentrer la date");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        System.out.println("Saisir une date JJ.MM.AAAA");
+        datefrai = sc.nextLine();
+        if (datefrai.matches("[0-31]{2}[.][010203040506070809101112]{2}[.][2021-2021]{4}")) {
+
+            // code de la base de donnée
+
+        }
+
+        System.out.println("Veuillez rentrer vos fraies de kilomètrique");
+        nbkilometre = sc.nextDouble();
+        double prixkilometre = nbkilometre * 0.67;
+
+        
         System.out.println("Veuillez rentrer vos frais de nuité");
-        nbnuite = sc.nextLine();
+        nbnuite = sc.nextDouble();
+        double prixnuite = nbnuite * 66;
 
         System.out.println("Veuillez rentrer vos frais de repas");
-        nbrepas = sc.nextLine();
+        nbrepas = sc.nextDouble();
+/*
+        try {
+            connexion = DriverManager.getConnection(url, utilisateur, motDePasse);
+            String sql = "SELECT mfr_libelle" 
+            + "FROM modele_frais;";
+            PreparedStatement statement = connexion.prepareStatement(sql);
+            rs = statement.executeQuery(sql);
+            rsrepas = rs;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+
+        }*/
+
+        double prixrepas = nbrepas*23;
 
         System.out.println("Veuillez rentrer vos frais de hors forfait");
-        nbhorsf = sc.nextLine();
+        nbhorsf = sc.nextDouble();
 
         System.out.println("Voici les fraies saisie actuellement");
-        System.out.println("Vos frais kilomètrique sont : " + nbkilometre + "€");
-        System.out.println("Vos frais de repas sont : " + nbrepas + "€");
-        System.out.println("Vos frais de nuité sont : " + nbnuite + "€");
-        System.out.println("Vos frais de hors fortait : " + nbhorsf + "€");
+        System.out.println("Vos frais kilomètrique sont : " + nbkilometre );
+        System.out.println("Vos frais de repas sont : " + nbrepas );
+        System.out.println("Vos frais de nuité sont : " + nbnuite );
+        System.out.println("Vos frais de hors fortait : " + nbhorsf );
+
+        double nbprixtotal = prixkilometre + prixrepas + prixnuite + nbhorsf;
+        double frai = nbprixtotal *0.20;
+
+        try {
+            connexion = DriverManager.getConnection(url, utilisateur, motDePasse);
+            String sql = "INSERT INTO frais (fr_libelle_libre, fr_date, fr_quantite, fr_montant, fr_taxe, fk_tre, fk_fdrm_ag, fk_fdrm_mois)"
+                    + "VALUE(?, ?, ?, ?, ?)";
+            PreparedStatement statement = connexion.prepareStatement(sql);
+            statement.setString(1, "frais kilometrique de"+prenom);
+            statement.setString(2, datefrai);
+            statement.setInt(3, 1);
+            statement.setDouble(4, nbprixtotal);
+            statement.setDouble(5, frai);
+            statement.setString(6, null);
+            statement.setDouble(7, 0);
+            statement.setDouble(8, 1);
+            statement.setString(9, datefrai);
+
+
+            int rowsInserted = statement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("A new user was inserted successfully!");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+        }
+
     }
 
     public static boolean modifierfrais() {
@@ -48,11 +126,12 @@ public class Fiche_de_frais {
 
         if (retry == true) {
 
-            double kilomedouble = 0;
-            double nuitedouble = 0;
-            double repasdouble = 0;
-            double horsfdouble = 0;
+            double kilomedouble = nbkilometre;
+            double nuitedouble = nbnuite;
+            double repasdouble = nbrepas;
+            double horsfdouble = nbhorsf;
             boolean pasok;
+            String test = "null";
             pasok = true;
 
             while (pasok) {
@@ -60,19 +139,20 @@ public class Fiche_de_frais {
                 pasok = false;
                 try {
                     System.out.println("Veuillez rentrer vos fraies de kilomètrique");
-                    nbkilometre = sc.nextLine();
-                    kilomedouble = Double.parseDouble(nbkilometre);
+                    nbkilometre = sc.nextDouble();
+                    kilomedouble = Double.parseDouble(test);
 
                     System.out.println("Veuillez rentrer vos frais de nuité");
-                    nbnuite = sc.nextLine();
-                    nuitedouble = Double.parseDouble(nbnuite);
+                    nbnuite = sc.nextDouble();
+                    nuitedouble = Double.parseDouble(test);
 
                     System.out.println("Veuillez rentrer vos frais de repas");
-                    nbrepas = sc.nextLine();
-                    repasdouble = Double.parseDouble(nbrepas);
+                    nbrepas = sc.nextDouble();
+                    repasdouble = Double.parseDouble(test);
+
                     System.out.println("Veuillez rentrer vos frais de hors forfait");
-                    nbhorsf = sc.nextLine();
-                    horsfdouble = Double.parseDouble(nbhorsf);
+                    nbhorsf = sc.nextDouble();
+                    horsfdouble = Double.parseDouble(test);
                 }
 
                 catch (NumberFormatException e) {
@@ -82,10 +162,10 @@ public class Fiche_de_frais {
             }
 
             System.out.println("Voici les fraies saisie actuellement");
-            System.out.println("Vos frais kilomètrique sont : " + kilomedouble + "€");
-            System.out.println("Vos frais de repas sont : " + nuitedouble + "€");
-            System.out.println("Vos frais de nuité sont : " + repasdouble + "€");
-            System.out.println("Vos frais de hors fortait : " + horsfdouble + "€");
+            System.out.println("Vos frais kilomètrique sont : " + kilomedouble );
+            System.out.println("Vos frais de repas sont : " + nuitedouble);
+            System.out.println("Vos frais de nuité sont : " + repasdouble);
+            System.out.println("Vos frais de hors fortait : " + horsfdouble);
         }
         return true;
     }
@@ -153,5 +233,6 @@ public class Fiche_de_frais {
             System.out.println("Le frai est correctement supprimé");
 
         }
+
     }
 }
