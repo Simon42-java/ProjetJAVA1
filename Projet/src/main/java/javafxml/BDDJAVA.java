@@ -20,6 +20,11 @@ public class BDDJAVA {
     static String nom;
     static ResultSet rs = null;
 
+    public static void main(String[] args) {
+        //tester le code
+        selectBDD();
+    }
+
     public static void selectBDD() {
 
         try {
